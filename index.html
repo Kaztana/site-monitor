@@ -1,26 +1,8 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-<meta charset="utf-8">
-<title>サイト監視</title>
-</head>
-<body>
+<h2>監視サイト管理</h2>
 
-<h1>サイト監視ダッシュボード</h1>
+<input id="siteName" placeholder="サイト名">
+<input id="siteUrl" placeholder="URL">
 
-<table border="1">
-<thead>
-<tr>
-<th>サイト</th>
-<th>状態</th>
-</tr>
-</thead>
-
-<tbody id="tbody"></tbody>
-
-</table>
-
-<script src="app.js"></script>
-
-</body>
-</html>
+<button onclick="saveSite()">
+追加
+</button>
