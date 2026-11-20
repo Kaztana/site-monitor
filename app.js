@@ -1,24 +1,56 @@
-async function loadData(){
+let sites = [];
 
- const res=await fetch(
-   "./data/result.json?t="+Date.now()
- );
+async function loadSites() {
 
- const data=await res.json();
+  const res =
+    await fetch("./data/sites.json");
 
- const tbody=document.getElementById("tbody");
+  sites = await res.json();
 
- tbody.innerHTML="";
-
- data.forEach(site=>{
-
-  tbody.innerHTML+=`
-  <tr>
-   <td>${site.name}</td>
-   <td>${site.status}</td>
-  </tr>`;
- });
-
+  renderSites();
 }
 
-loadData();
+function renderSites() {
+
+  const list =
+    document.getElementById("siteList");
+
+  list.innerHTML = "";
+
+  sites.forEach((site,index)=>{
+
+    list.innerHTML += `
+      <li>
+        ${site.name}
+        <button onclick="deleteSite(${index})">
+        削除
+        </button>
+      </li>
+    `;
+  });
+}
+
+function addSite(){
+
+  const name =
+    document.getElementById("siteName").value;
+
+  const url =
+    document.getElementById("siteUrl").value;
+
+  sites.push({
+    name,
+    url
+  });
+
+  renderSites();
+}
+
+function deleteSite(index){
+
+  sites.splice(index,1);
+
+  renderSites();
+}
+
+loadSites();
